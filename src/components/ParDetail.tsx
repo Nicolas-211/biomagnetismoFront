@@ -51,7 +51,7 @@ export default function ParDetail({ id, onBack }: { id: string; onBack: () => vo
   if (error) return <div className="text-center py-8 text-red-500">{error}</div>;
   if (!par) return <div className="text-center py-8">No se encontró el par</div>;
 
-  const imageBasePath = "https://res.cloudinary.com/dtfdvztc6/image/upload/biomagnetismo";
+ 
   const formattedName = formatImageName(par.nombre);
   const image1 = `https://res.cloudinary.com/dtfdvztc6/image/upload/biomagnetismo/${formattedName}-p1.jpg`;
   const image2 = `https://res.cloudinary.com/dtfdvztc6/image/upload/biomagnetismo/${formattedName}-p2.jpg`;
