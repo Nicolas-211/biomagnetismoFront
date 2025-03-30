@@ -36,21 +36,27 @@ export default function ParDetail({ id, onBack }: { id: string; onBack: () => vo
     fetchPar();
   }, [id]);
 
-  // Función para formatear el nombre de la imagen
-  const formatImageName = (name: string) => {
-    return name
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^a-z0-9-]/g, '');
-  };
+  
 
   if (loading) return <div className="text-center py-8">Cargando...</div>;
   if (error) return <div className="text-center py-8 text-red-500">{error}</div>;
   if (!par) return <div className="text-center py-8">No se encontró el par</div>;
 
-  const imageBasePath = "/images";
-  const formattedName = formatImageName(par.nombre);
+  const formatImageName = (name: string) => {
+    return name
+      .trim()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "") // Elimina acentos
+      .replace(/\s+/g, '-') // Reemplaza espacios con un solo guión
+      .replace(/[^a-z0-9-]/g, '') // Elimina caracteres especiales
+      .replace(/-+/g, '-') // Elimina múltiples guiones consecutivos
+      .replace(/^\-+|\-+$/g, ''); // Elimina guiones al inicio/final
+  };
+  
+  // Ruta corregida - usa 'imagenes' en lugar de 'images'
+  const imageBasePath = "/imagenes"; 
+  const formattedName = formatImageName(par.nombre); // Ejemplo: "adenoides-adenoides"
   const image1 = `${imageBasePath}/${formattedName}-p1.jpg`;
   const image2 = `${imageBasePath}/${formattedName}-p2.jpg`;
   console.log(image1)
