@@ -53,6 +53,7 @@ export default function ParDetail({ id, onBack }: { id: string; onBack: () => vo
   const formattedName = formatImageName(par.nombre);
   const image1 = `${imageBasePath}/${formattedName}-p1.jpg`;
   const image2 = `${imageBasePath}/${formattedName}-p2.jpg`;
+  console.log(image1)
 
   return (
     <div className="min-h-screen bg-gray-100 py-8 px-4">

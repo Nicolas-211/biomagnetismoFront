@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 interface Par {
-  _id: string;
+  id: string;
   nombre: string;
   tipo: string;
   PATOGENO: string;
@@ -17,14 +17,15 @@ export default function ParList({ onSelect }: { onSelect: (id: string) => void }
       .catch(err => console.error('Error:', err));
   }, []);
 
+  console.log(pares)
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <h1 className="text-2xl font-bold mb-4">Pares Biomagnéticos</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {pares.map(par => (
           <div 
-            key={par._id} 
-            onClick={() => onSelect(par._id)}
+            key={par.id} 
+            onClick={() => onSelect(par.id)}
             className="bg-white p-4 rounded-lg shadow cursor-pointer hover:bg-blue-50"
           >
             <h2 className="font-bold">{par.nombre}</h2>
